@@ -47,3 +47,5 @@ console.log(movies);
 movies.splice(2, 0, 'Badass Ravi Kumar 2'); // add 'Badass Ravi Kumar' at index 2
 console.log(movies);
 
+
+
