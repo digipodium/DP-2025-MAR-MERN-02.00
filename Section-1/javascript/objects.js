@@ -57,13 +57,8 @@ const smartphoneArray = [
         price: 59999,
         colors: ['Eternal Green', 'Titan Black'],
     },
-]
+];
 
-
-
-
-
-
-
+console.log(smartphoneArray[1]);
 
 
