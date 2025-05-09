@@ -1,4 +1,5 @@
 'use client';
+import { IconTrash } from '@tabler/icons-react';
 import React, { useState } from 'react'
 
 const TodoList = () => {
@@ -27,6 +28,14 @@ const TodoList = () => {
         setTaskList([...temp]);
     }
 
+    const updateTask = (index) => {
+        // console.log(index);
+
+        const temp = taskList;
+        temp[index].completed = !temp[index].completed;
+        setTaskList([...temp]);
+    }
+
     return (
         <div className='min-h-screen bg-violet-300 py-10'>
             <h1 className='text-center font-bold text-4xl mb-8'>Todo List</h1>
@@ -38,7 +47,9 @@ const TodoList = () => {
                 </h1>
                 <button className='p-5 bg-violet-900 text-white text-2xl rounded-full'
                         onClick={() => {setCounter(counter + 1); console.log(counter)}}
-                        >Click to ADD</button> */}
+                >
+                        Click to ADD
+                </button> */}
 
                 <div className='p-5 border-2 border-violet-900 bg-white rounded-lg'>
                     <input type="text" className='border-2 w-full px-3 py-2'
@@ -66,11 +77,14 @@ const TodoList = () => {
                                     <div className='flex gap-3'>
                                         <button className='bg-violet-900 hover:bg-violet-700 active:bg-violet-500 text-white px-3 py-2 rounded-lg'
                                             onClick={() => { deleteTask(index) }}>
-                                            Delete
+                                            <IconTrash size={30} />
+                                            <span>
+                                                Delete
+                                            </span>
                                         </button>
                                         <button className={`${task.completed ? 'bg-red-700' : 'bg-green-700'} text-white px-3 py-2 rounded-lg`}
                                             onClick={() => { updateTask(index) }}>
-                                            {task.completed ? 'Undo' : 'Done'}
+                                            {task.completed ? 'Undo 👎🏻' : 'Done 👍 '}
                                         </button>
                                     </div>
 
