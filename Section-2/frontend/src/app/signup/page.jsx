@@ -1,6 +1,21 @@
 'use client';
 import { useFormik } from 'formik';
 import React from 'react'
+import * as Yup from 'yup';
+
+const SignupSchema = Yup.object().shape({
+    name: Yup.string().min(2, 'Too Short').max(50, 'Too Long').required('Be-naam hai Kya?'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string()
+        .matches(/[a-z]/, 'Password must contain a lowercase letter')
+        .matches(/[A-Z]/, 'Password must contain an uppercase letter')
+        .matches(/[0-9]/, 'Password must contain a number')
+        .matches(/\W/, 'Password must contain a special character')
+        .min(8, 'Password too short')
+        .required('Password is required'),
+    confirmPassword: Yup.string().required('Confirm Password is required')
+        .oneOf([Yup.ref('password')], 'Passwords must match')
+})
 
 const Signup = () => {
 
@@ -15,6 +30,7 @@ const Signup = () => {
             console.log(values);
             resetForm();
         },
+        validationSchema: SignupSchema,
     })
 
     return (
@@ -128,7 +144,7 @@ const Signup = () => {
                                         onChange={signupForm.handleChange}
                                         value={signupForm.values.email}
                                         className="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        required=""
+                                        // required=""
                                         aria-describedby="email-error"
                                     />
                                     <div className="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
