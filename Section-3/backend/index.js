@@ -7,6 +7,8 @@ const app = express();
 
 const PORT = 5000;
 
+// Middleware
+app.use(express.json()); // To parse JSON data
 app.use('/user', UserRouter);
 
 // Routing
