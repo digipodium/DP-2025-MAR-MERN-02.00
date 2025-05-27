@@ -37,7 +37,7 @@ const UpdateUser = () => {
 
     return (
         <div>
-            <h1>Update User</h1>
+            <h1 className='text-3xl py-5 text-center font-bold'>Update User</h1>
 
             <div className='container mx-auto bg-sky-700 p-10 rounded-lg shadow-lg'>
                 {
