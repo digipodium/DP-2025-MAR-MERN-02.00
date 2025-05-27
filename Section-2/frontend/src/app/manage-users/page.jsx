@@ -1,5 +1,5 @@
 'use client';
-import { IconPencilCheck } from '@tabler/icons-react';
+import { IconPencilCheck, IconTrash } from '@tabler/icons-react';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -58,20 +58,22 @@ const ManageUser = () => {
                                     {
                                         userList.map((user) => {
                                             return (
-                                                <tr key={user._id} className='border-b-2'>
+                                                <tr key={user._id} className='border-b-2 '>
                                                     <td className='p-2'>{user._id}</td>
                                                     <td className='p-2'>{user.name}</td>
                                                     <td className='p-2'>{user.email}</td>
                                                     <td className='p-2'>{user.createdAt}</td>
-                                                    <td className='p-2'> 
+                                                    <td className='p-2'>
                                                         <button className='bg-green-500 hover:bg-green-600 active:bg-green-800 text-white px-4 py-2 rounded-2xl border' >
                                                             <Link href={`/update-user/${user._id}`}>
-                                                                <IconPencilCheck  />
+                                                                <IconPencilCheck size={30} />
                                                             </Link>
                                                         </button>
                                                         <button
                                                             onClick={() => { deleteUser(user._id) }}
-                                                            className='bg-red-700 hover:bg-red-600 active:bg-red-800 text-white px-4 py-2 rounded-2xl ml-4 border' >Delete</button>
+                                                            className='bg-red-700 hover:bg-red-600 active:bg-red-800 text-white px-4 py-2 rounded-2xl ml-4 border' >
+                                                                <IconTrash size={30} />
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             )
