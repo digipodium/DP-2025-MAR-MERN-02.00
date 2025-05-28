@@ -1,4 +1,6 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const Model = require('../models/userModel');
 
@@ -66,5 +68,33 @@ router.put('/update/:id', (req, res) => {
             console.log(err);
         });
 });
+
+router.post('/authenticate', (req, res) => {
+    Model.findOne(req.body)
+        .then((result) => {
+            if (result) {
+                // Authentication successful
+                // Generating a token
+
+                const { _id, name, email } = result;
+                const payload = { _id, name, email };
+
+                jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' }, (err, token) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json(err);
+                    } else {
+                        res.status(200).json({ token });
+                    }
+                })
+            } else {
+                // Authentication failed
+                res.status(401).json({ message: 'Invalid credentials' });
+            }
+        }).catch((err) => {
+            res.status(500).json(err);
+            console.log(err);
+        });
+})
 
 module.exports = router;

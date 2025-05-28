@@ -21,8 +21,6 @@ const FileUpload = () => {
                 console.log(result.data);
                 setPreview(result.data.url);
                 setImageUrl(result.data.url);
-                // This line might be causing an error as productForm is not defined
-                // productForm.setFieldValue('image', result.data.url);
             }).catch((err) => {
                 console.log(err);
                 toast.error('failed to upload file');
